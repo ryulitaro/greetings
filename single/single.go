@@ -31,6 +31,7 @@ func randomFormat() string {
 		"Hi, %v. Welcome!",
 		"Great to see you, %v!",
 		"Hail, %v! Well met!",
+		"Hi, %v! How are you doing?",
 	}
 
 	// Return a randomly selected message format by specifying
