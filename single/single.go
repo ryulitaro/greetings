@@ -8,13 +8,13 @@ import (
 )
 
 // Hello returns a greeting for the named person.
-func Hello(name string) (string, error) {
+func Hello(name string, short bool) (string, error) {
 	// If no name was given, return an error with a message.
 	if name == "" {
 		return name, errors.New("empty name")
 	}
 	// Create a message using a random format.
-	message := fmt.Sprintf(randomFormat(), name)
+	message := fmt.Sprintf(randomFormat(short), name)
 	return message, nil
 }
 
@@ -25,16 +25,24 @@ func init() {
 
 // randomFormat returns one of a set of greeting messages. The returned
 // message is selected at random.
-func randomFormat() string {
+func randomFormat(short bool) string {
 	// A slice of message formats.
-	formats := []string{
+	shortFormats := []string{
 		"Hi, %v. Welcome!",
-		"Great to see you, %v!",
+		"Great to see you, %v! ",
 		"Hail, %v! Well met!",
+	}
+
+	longFormats := []string{
+		"Hi, %v. Welcome! What a lovely day.",
+		"Great to see you, %v! You look great",
 		"Hi, %v! How are you doing?",
 	}
 
 	// Return a randomly selected message format by specifying
 	// a random index for the slice of formats.
-	return formats[rand.Intn(len(formats))]
+	if short {
+		return shortFormats[rand.Intn(len(shortFormats))]
+	}
+	return longFormats[rand.Intn(len(longFormats))]
 }
