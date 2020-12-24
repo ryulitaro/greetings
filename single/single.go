@@ -1,17 +1,26 @@
 package single
 
 import (
-	"errors"
 	"fmt"
 	"math/rand"
 	"time"
 )
 
+// Error is error of single moduele
+type Error struct {
+	when time.Time
+	what string
+}
+
+func (e Error) Error() string {
+	return fmt.Sprintf("%s Error!!! at %v", e.what, e.when)
+}
+
 // Hello returns a greeting for the named person.
 func Hello(name string, short bool) (string, error) {
 	// If no name was given, return an error with a message.
 	if name == "" {
-		return name, errors.New("empty name")
+		return name, Error{time.Now(), "empty name"}
 	}
 	// Create a message using a random format.
 	message := fmt.Sprintf(randomFormat(short), name)
