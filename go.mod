@@ -1,3 +1,3 @@
-module github.com/ryulitaro/greetings
+module github.com/ryulitaro/greetings/v2
 
 go 1.15
